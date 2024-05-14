@@ -10,8 +10,47 @@
             <div class="bg-white dark:bg-gray-800 overflow-hidden shadow-sm sm:rounded-lg">
                 <div class="p-6 text-gray-900 dark:text-gray-100">
                     {{ __("You're logged in!") }}
-                </div>
+                </div>'
+
+                <button class="btn btn-primary" onclick="sendevent()">event</button>
             </div>
         </div>
     </div>
+    <script >
+
+
+        function sendevent(){
+            axios.get('{{route('reverb')}}')
+                .then( function (response){
+                    console.log(response)
+                });
+        }
+
+        window.onload=function(){
+            Echo.channel('sample')
+                .listen('.message.sent', (e) => {
+                    console.log(e);
+                })
+        }
+
+
+
+
+
+    </script>
+
+    <script type="module">
+
+
+        // Echo.private(`player`)
+        //     .listenForWhisper('position', (e) => {
+        //         // console.log(e.position);
+        //         console.log(e.players)
+        //
+        //         e.players.forEach((key, value) => {
+        //             console.log(value)
+        //             players.push(value)
+        //         })
+        //     });
+    </script>
 </x-app-layout>
