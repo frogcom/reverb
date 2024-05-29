@@ -25,6 +25,7 @@
         function activateEvent(){
             axios.get('{{route('reverb')}}')
                 .then( function (response){
+                    console.log(response)
                 });
         }
 
