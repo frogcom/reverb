@@ -26,7 +26,9 @@
             axios.get('{{route('reverb')}}')
                 .then( function (response){
                     console.log(response)
-                });
+                }).catch (function(error) {
+                console.error(error.response.data);     // NOTE - use "error.response.data` (not "error")
+            });
         }
 
         document.addEventListener("DOMContentLoaded", () => {
