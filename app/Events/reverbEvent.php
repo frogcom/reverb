@@ -2,6 +2,7 @@
 
 namespace App\Events;
 
+use App\Models\User;
 use Illuminate\Broadcasting\Channel;
 use Illuminate\Broadcasting\InteractsWithSockets;
 use Illuminate\Broadcasting\PresenceChannel;
@@ -19,11 +20,9 @@ class reverbEvent  implements ShouldBroadcastNow
      * Create a new event instance.
      */
     public $user;
-    public function __construct( $user)
+    public function __construct(User $user)
     {
         //
-
-        log::info($user);
 //        $this->playerID = $playerID;
 
         $this->user = $user;
@@ -37,16 +36,13 @@ class reverbEvent  implements ShouldBroadcastNow
     public function broadcastOn(): array
     {
         return [
-            new Channel('reverb'),
+            new Channel('channel'),
         ];
     }
-    public function broadcastAs()
+    public function broadcastAs(): string
     {
         return 'event';
     }
-    public function broadcastWith(): array
-    {
-        return ['id' => $this->user->id];
-    }
+
 
 }

@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Events\reverbEvent;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Log;
 
 class DashboardController extends Controller
 {
@@ -15,6 +16,6 @@ class DashboardController extends Controller
 
         reverbEvent::dispatch(Auth::user());
 
-        return response()->json(['success' => true, 'message' => 'Message sent successfully']);
+        return 'test';
     }
 }

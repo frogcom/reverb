@@ -12,26 +12,36 @@
                     {{ __("You're logged in!") }}
                 </div>'
 
+                <div id="users"></div>
+{{--                <a href="{{route('reverb')}}">--}}
                 <button class="btn btn-primary" onclick="sendevent()">event</button>
+{{--                <button class="btn btn-primary" >event</button>--}}
+{{--                </a>--}}
             </div>
         </div>
     </div>
     <script >
 
-
         function sendevent(){
             axios.get('{{route('reverb')}}')
                 .then( function (response){
-                    console.log(response)
+                        console.log('success')
                 });
         }
 
-        window.onload=function(){
-            Echo.channel('sample')
-                .listen('.message.sent', (e) => {
+        document.addEventListener("DOMContentLoaded", () => {
+
+            Echo.channel('channel')
+                .listen('.event', (e) => {
                     console.log(e);
+                    const p = document.createElement("p");
+                    const text = document.createTextNode(e.user.name);
+                    p.appendChild(text);
+                    const element = document.getElementById("users");
+                    element.appendChild(p);
                 })
-        }
+            })
+
 
 
 
