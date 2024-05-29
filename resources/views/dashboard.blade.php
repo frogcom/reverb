@@ -25,7 +25,6 @@
         function sendevent(){
             axios.get('{{route('reverb')}}')
                 .then( function (response){
-                        console.log('success')
                 });
         }
 
@@ -33,6 +32,8 @@
 
             Echo.channel('channel')
                 .listen('.event', (e) => {
+                    console.log('success')
+                    
                     console.log(e);
                     const p = document.createElement("p");
                     const text = document.createTextNode(e.user.name);
